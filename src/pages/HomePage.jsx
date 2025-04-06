@@ -1,36 +1,44 @@
-// import fogCloud from "../assets/images/foggy.jpg";
 import Header from "../components/Header";
-import FeatureCard from "../components/FeatureCard";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import FeatureCardTwo from "../components/FeatureCardTwo";
-import { useNavigate } from "react-router-dom";
 import spiceIndicator from "../assets/images/pepper.jpg";
+import { Box } from "@mui/material";
 
 const Home = () => {
   return (
-    <div
-      className="w-full min-h-screen flex flex-col justify-center items-center"
-      style={{
+    <Box
+      sx={{
+        width: "100vw",
+        minHeight: "100vh",
+        backgroundImage: `url(${spiceIndicator})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundImage: `url(${spiceIndicator})`,
-        width: "100vw",
-        height: "94vh", // Ensures full screen height
-        overflow: "hidden", // Prevents scrolling
-        overlay: "auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-start", // allow content to grow downward
+        px: { xs: 2, sm: 4 },
+        py: { xs: 4, sm: 6 },
       }}
     >
-      <div className="bg-black bg-opacity-50 p-8 rounded-lg text-white text-center">
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "1200px",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          color: "white",
+          p: { xs: 2, sm: 4 },
+          borderRadius: 2,
+          mb: 4,
+        }}
+      >
         <Header />
-      </div>
-      <div>
+      </Box>
+
+      <Box sx={{ width: "100%", maxWidth: "1200px" }}>
         <FeatureCardTwo />
-      </div>
-      {/* <div>
-        <FeatureCard />
-      </div> */}
-    </div>
+      </Box>
+    </Box>
   );
 };
 
