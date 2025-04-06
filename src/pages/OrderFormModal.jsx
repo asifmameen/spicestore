@@ -55,10 +55,10 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
 
     try {
       const result = await emailjs.send(
-        "your_service_id",     // replace with your actual service ID
-        "your_template_id",    // replace with your template ID
+        "service_6gpcffd",     // replace with your actual service ID
+        "template_cjb1phv",    // replace with your template ID
         formData,
-        "your_user_id"         // replace with your public key (API key)
+        "YMACyfEoM_UuPQs1o"         // replace with your public key (API key)
       );
 
       console.log("EmailJS result:", result.text);
