@@ -7,8 +7,6 @@ import {
   Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useGlobalState } from "../context/GlobalStateContext";
-import OrderForm from "./OrderFormModal";
 import { useState } from "react";
 import OrderFormModal from "./OrderFormModal";
 import cardamom from "../assets/images/cardamom.jpg";
@@ -42,14 +40,20 @@ const ProductGrid = () => {
     setSelectedSpice(spiceName);
     setModalOpen(true);
   };
+
   return (
     <>
       <Box
         sx={{
-          py: { xs: 6, md: 19 },
-          px: { xs: 2, sm: 4, md: 41 },
-          minHeight: "50vh",
-          backgroundColor: "#f2f2f2", // Or background image
+          py: { xs: 6, md: 12 },
+          px: 2,
+          minHeight: "100vh",
+          width: "100vw", // Full width to eliminate black space
+          backgroundColor: "#e6f4ea", // Light green
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          overflowX: "hidden", // Prevent horizontal scroll
         }}
       >
         <Typography
@@ -61,14 +65,13 @@ const ProductGrid = () => {
           Our Premium Spices
         </Typography>
 
-        {/* Fixed-width container to constrain layout */}
         <Box
           sx={{
             maxWidth: "1200px",
-            mx: "auto",
+            width: "100%",
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            justifyContent: "center",
             gap: 4,
           }}
         >
@@ -79,7 +82,7 @@ const ProductGrid = () => {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.3 }}
               style={{
-                flex: "1 1 calc(33.333% - 32px)", // 3 per row with spacing
+                flex: "1 1 calc(33.333% - 32px)",
                 minWidth: "280px",
                 maxWidth: "380px",
               }}
@@ -139,6 +142,7 @@ const ProductGrid = () => {
           ))}
         </Box>
       </Box>
+
       <OrderFormModal
         open={modalOpen}
         handleClose={() => setModalOpen(false)}

@@ -4,7 +4,8 @@ import ViewStore from "./pages/ViewStore";
 import Footer from "./components/Footer";
 import { GlobalStateProvider } from "./context/GlobalStateContext";
 import Header from "./components/Header";
-import OrderForm from "./pages/OrderForm";
+import OrderForm from "./pages/OrderFormModal";
+import ProductGrid from "./pages/ProductGrid";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<OrderForm />} />
+          <Route path="/shop" element={<ProductGrid />} />
         </Routes>
         <Footer />
       </Router>

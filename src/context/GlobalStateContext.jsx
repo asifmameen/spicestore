@@ -4,9 +4,17 @@ const GlobalStateContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
   const [openContactModal, setOpenContactModal] = useState(false);
+  const [openPurchaseForm, setOpenPurchaseForm] = useState(false);
 
   return (
-    <GlobalStateContext.Provider value={{ openContactModal, setOpenContactModal }}>
+    <GlobalStateContext.Provider
+      value={{
+        openContactModal,
+        setOpenContactModal,
+        openPurchaseForm,
+        setOpenPurchaseForm,
+      }}
+    >
       {children}
     </GlobalStateContext.Provider>
   );
