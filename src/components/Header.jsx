@@ -11,7 +11,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import mainLogo from "../assets/images/logomain4.png";
+import mainLogo from "../assets/images/evergreen_logo.png";
 import { useGlobalState } from "../context/GlobalStateContext";
 import ContactModal from "../pages/ContactModal";
 
@@ -21,7 +21,7 @@ const Header = () => {
     <>
       <AppBar
         position="fixed"
-        sx={{ backgroundColor: "#58554b", boxShadow: 1, paddingY: 1 }}
+        sx={{ backgroundColor: "#ffffff", boxShadow: 1, paddingY: 1 }}
       >
         <Toolbar
           sx={{
@@ -32,7 +32,7 @@ const Header = () => {
         >
           <CardMedia
             sx={{
-              width: 800,
+              width: 1030,
               height: 60,
               borderRadius: 3,
               backgroundSize: "contain",

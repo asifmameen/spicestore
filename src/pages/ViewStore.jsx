@@ -1,7 +1,8 @@
 import React from "react";
+import ProductGrid from "./ProductGrid";
 
 const ViewStore = () => {
-  return <div>ViewStore</div>;
+  return <ProductGrid/>;
 };
 
 export default ViewStore;

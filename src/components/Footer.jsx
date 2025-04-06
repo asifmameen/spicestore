@@ -8,8 +8,7 @@ const Footer = () => {
       sx={{
         position: "fixed",
         backgroundColor: "#F1FFFF",
-        minHeight: "50px",
-        top: "auto",
+        height: "40px",
         bottom: 0,
         width: "100vw",
         padding: "10px 0",
@@ -23,11 +22,16 @@ const Footer = () => {
         }}
       >
         <Typography
-          sx={{ color: "black", textAlign: "center", fontSize: "0.9rem" }}
+          sx={{
+            color: "black",
+            textAlign: "center",
+            fontSize: "0.9rem",
+            marginTop: "-40px",
+          }}
         >
-          © 2025 Land Listing. All rights reserved.
+          © 2025 Spice Listing. All rights reserved.
         </Typography>
-        <Box sx={{ ml: 2 }}>
+        {/* <Box sx={{ ml: 2 }}>
           <IconButton
             sx={{ color: "#333", opacity: 0.6, "&:hover": { opacity: 1 } }}
           >
@@ -48,7 +52,7 @@ const Footer = () => {
           >
             <LinkedIn />
           </IconButton>
-        </Box>
+        </Box> */}
       </Toolbar>
     </AppBar>
   );

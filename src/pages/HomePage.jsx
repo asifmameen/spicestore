@@ -27,9 +27,9 @@ const Home = () => {
       <div>
         <FeatureCardTwo />
       </div>
-      <div>
+      {/* <div>
         <FeatureCard />
-      </div>
+      </div> */}
     </div>
   );
 };
