@@ -3,17 +3,17 @@ import {
   TextField,
   Button,
   Typography,
-  Paper,
   Box,
+  Modal,
   Stack,
-  MenuItem,
-  Select,
   FormControl,
   InputLabel,
-  Modal,
+  Select,
+  MenuItem,
   IconButton,
 } from "@mui/material";
 import { Add, Remove, Close } from "@mui/icons-material";
+import emailjs from "emailjs-com";
 
 const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
   const initialState = {
@@ -27,6 +27,7 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
   };
 
   const [formData, setFormData] = useState(initialState);
+  const [submitting, setSubmitting] = useState(false);
 
   const spices = ["Cardamom", "Vanilla", "Pepper"];
 
@@ -48,163 +49,100 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
     });
   };
 
-  const closeModalAndReset = () => {
-    setFormData(initialState);
-    handleClose();
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
 
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbznsehiO9sKOLX3_eIVj3PkOfbAMez3TvEguRLFDpx0Ds66ZFPOrFmlxmsEarKkS7xF/exec",
-      {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-      }
-    );
+    try {
+      const result = await emailjs.send(
+        "your_service_id",     // replace with your actual service ID
+        "your_template_id",    // replace with your template ID
+        formData,
+        "your_user_id"         // replace with your public key (API key)
+      );
 
-    const result = await response.json();
-    if (result.result === "success") {
-      alert("Order submitted successfully!");
+      console.log("EmailJS result:", result.text);
+      alert("✅ Order sent successfully via Email!");
       setFormData(initialState);
       handleClose();
-    } else {
-      alert("Something went wrong. Please try again.");
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      alert("❌ Failed to send order. Please try again later.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={() => {}} // disable default close behavior
-      disableEscapeKeyDown
-    >
+    <Modal open={open} onClose={handleClose}>
       <Box
+        component="form"
+        onSubmit={handleSubmit}
         sx={{
-          position: "relative",
-          mt: "5vh",
-          mx: "auto",
-          maxWidth: "600px",
-          bgcolor: "#fff",
-          borderRadius: 2,
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: { xs: "85%", sm: 450 },
+          bgcolor: "background.paper",
           boxShadow: 24,
+          borderRadius: 3,
           p: 4,
-          overflowY: "auto",
-          maxHeight: "90vh",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
         }}
       >
-        {/* Close Button */}
-        <IconButton
-          onClick={closeModalAndReset}
-          sx={{ position: "absolute", top: 12, right: 12 }}
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h6" fontWeight="bold">
+            Place Your Order
+          </Typography>
+          <IconButton onClick={handleClose}>
+            <Close />
+          </IconButton>
+        </Box>
+
+        <TextField required label="Name" name="name" value={formData.name} onChange={handleChange} />
+        <TextField required label="Email" name="email" type="email" value={formData.email} onChange={handleChange} />
+        <TextField required label="Phone" name="phone" value={formData.phone} onChange={handleChange} />
+        <TextField required label="Address" name="address" value={formData.address} onChange={handleChange} multiline rows={2} />
+
+        <FormControl fullWidth required>
+          <InputLabel>Spice</InputLabel>
+          <Select name="spice" value={formData.spice} onChange={handleChange} label="Spice">
+            {spices.map((spice, i) => (
+              <MenuItem key={i} value={spice}>{spice}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Typography>Quantity (g):</Typography>
+          <IconButton onClick={() => handleQuantityChange(-10)}><Remove /></IconButton>
+          <TextField
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            size="small"
+            sx={{ width: 60 }}
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          />
+          <IconButton onClick={() => handleQuantityChange(10)}><Add /></IconButton>
+        </Stack>
+
+        <TextField label="Additional Notes" name="notes" value={formData.notes} onChange={handleChange} multiline rows={2} />
+
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={submitting}
+          sx={{
+            backgroundColor: "#4B0082",
+            ":hover": { backgroundColor: "#5e0acc" },
+          }}
         >
-          <Close />
-        </IconButton>
-
-        <Typography variant="h5" align="center" gutterBottom>
-          Spice Order Form
-        </Typography>
-
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={2}>
-            <TextField
-              fullWidth
-              label="Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <TextField
-              fullWidth
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <TextField
-              fullWidth
-              label="Phone"
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            <TextField
-              fullWidth
-              label="Address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-              multiline
-              rows={2}
-            />
-
-            <FormControl fullWidth required>
-              <InputLabel>Spice</InputLabel>
-              <Select
-                name="spice"
-                value={formData.spice}
-                onChange={handleChange}
-              >
-                {spices.map((spice) => (
-                  <MenuItem key={spice} value={spice}>
-                    {spice}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-
-            <Box display="flex" alignItems="center" gap={2}>
-              <Typography sx={{ color: "black", marginLeft: "10px" }}>
-                Quantity (grams):
-              </Typography>
-              <IconButton
-                onClick={() => handleQuantityChange(-50)}
-                color="primary"
-              >
-                <Remove />
-              </IconButton>
-              <TextField
-                value={formData.quantity}
-                name="quantity"
-                sx={{ width: "100px" }}
-                inputProps={{ readOnly: true }}
-              />
-              <IconButton
-                onClick={() => handleQuantityChange(50)}
-                color="primary"
-              >
-                <Add />
-              </IconButton>
-            </Box>
-
-            <TextField
-              fullWidth
-              label="Additional Notes"
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              multiline
-              rows={3}
-            />
-
-            <Box display="flex" justifyContent="center">
-              <Button type="submit" variant="contained" color="primary">
-                Submit Order
-              </Button>
-            </Box>
-          </Stack>
-        </form>
+          {submitting ? "Submitting..." : "Submit Order"}
+        </Button>
       </Box>
     </Modal>
   );
