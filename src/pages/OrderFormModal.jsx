@@ -55,10 +55,10 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
 
     try {
       const result = await emailjs.send(
-        "service_6gpcffd",     // replace with your actual service ID
-        "template_cjb1phv",    // replace with your template ID
+        "service_6gpcffd", // replace with your actual service ID
+        "template_cjb1phv", // replace with your template ID
         formData,
-        "YMACyfEoM_UuPQs1o"         // replace with your public key (API key)
+        "YMACyfEoM_UuPQs1o" // replace with your public key (API key)
       );
 
       console.log("EmailJS result:", result.text);
@@ -102,23 +102,59 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
           </IconButton>
         </Box>
 
-        <TextField required label="Name" name="name" value={formData.name} onChange={handleChange} />
-        <TextField required label="Email" name="email" type="email" value={formData.email} onChange={handleChange} />
-        <TextField required label="Phone" name="phone" value={formData.phone} onChange={handleChange} />
-        <TextField required label="Address" name="address" value={formData.address} onChange={handleChange} multiline rows={2} />
+        <TextField
+          required
+          label="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          label="Email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          label="Phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          label="Address"
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          multiline
+          rows={2}
+        />
 
         <FormControl fullWidth required>
           <InputLabel>Spice</InputLabel>
-          <Select name="spice" value={formData.spice} onChange={handleChange} label="Spice">
+          <Select
+            name="spice"
+            value={formData.spice}
+            onChange={handleChange}
+            label="Spice"
+          >
             {spices.map((spice, i) => (
-              <MenuItem key={i} value={spice}>{spice}</MenuItem>
+              <MenuItem key={i} value={spice}>
+                {spice}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
 
         <Stack direction="row" alignItems="center" spacing={1}>
-          <Typography>Quantity (g):</Typography>
-          <IconButton onClick={() => handleQuantityChange(-10)}><Remove /></IconButton>
+          <Typography sx={{ color: "black" }}>Quantity (g):</Typography>
+          <IconButton onClick={() => handleQuantityChange(-10)}>
+            <Remove />
+          </IconButton>
           <TextField
             name="quantity"
             value={formData.quantity}
@@ -127,10 +163,19 @@ const OrderFormModal = ({ open, handleClose, selectedSpice }) => {
             sx={{ width: 60 }}
             inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
           />
-          <IconButton onClick={() => handleQuantityChange(10)}><Add /></IconButton>
+          <IconButton onClick={() => handleQuantityChange(10)}>
+            <Add />
+          </IconButton>
         </Stack>
 
-        <TextField label="Additional Notes" name="notes" value={formData.notes} onChange={handleChange} multiline rows={2} />
+        <TextField
+          label="Additional Notes"
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
+          multiline
+          rows={2}
+        />
 
         <Button
           variant="contained"
