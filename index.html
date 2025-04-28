@@ -1,63 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <!-- ✅ Essential Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#ffffff" />
 
-    <!-- ✅ SEO Title -->
-    <title>Green Spices Kerala | Premium Organic Spices Direct from Farmers</title>
+  <!-- ✅ SEO Title -->
+  <title>Buy Kerala Spices Online | Organic Green Spices Kerala - Cardamom, Pepper, Cinnamon</title>
 
-    <!-- ✅ Meta Description -->
-    <meta
-      name="description"
-      content="Buy premium quality Kerala spices like cardamom, pepper, and cinnamon directly from trusted farmers. 100% natural, fresh, and delivered to your doorstep."
-    />
+  <!-- ✅ SEO Meta Description -->
+  <meta name="description" content="Experience the authentic taste of Kerala! Buy premium organic spices like cardamom, pepper, cinnamon, and more. Sourced directly from farmers. Fresh, natural, delivered across India and beyond." />
 
-    <!-- ✅ Keywords -->
-    <meta
-      name="keywords"
-      content="Green Spice Kerala, Kerala spices, cardamom, pepper, cinnamon, organic spices, buy spices online, Indian spices"
-    />
+  <!-- ✅ SEO Keywords (Modern SEO doesn't rely on this much but still okay to include) -->
+  <meta name="keywords" content="Kerala spices, Green Spice Kerala, organic spices online, buy Kerala spices, cardamom Kerala, pepper Kerala, cinnamon Kerala, Indian spices" />
 
-    <!-- ✅ Author -->
-    <meta name="author" content="Green Spices Kerala" />
+  <!-- ✅ Canonical URL -->
+  <link rel="canonical" href="https://greenspicekerala.com/" />
 
-    <!-- ✅ Open Graph for social previews -->
-    <meta property="og:title" content="Green Spices Kerala" />
-    <meta
-      property="og:description"
-      content="Discover premium Kerala spices delivered to your home. Fresh, organic, and straight from the source."
-    />
-    <meta property="og:image" content="/logo.png" /> <!-- Change this to your actual logo/image path -->
-    <meta property="og:url" content="https://greenspicekerala.com" />
-    <meta property="og:type" content="website" />
+  <!-- ✅ Author -->
+  <meta name="author" content="Green Spices Kerala" />
 
-    <!-- ✅ Favicon -->
-    <link rel="icon" type="image/png" href="/logo.png" />
+  <!-- ✅ Open Graph Tags for Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Green Spices Kerala" />
+  <meta property="og:title" content="Buy Kerala Spices Online | Organic Green Spices Kerala" />
+  <meta property="og:description" content="Authentic organic Kerala spices — cardamom, pepper, cinnamon, and more. Freshly sourced directly from Kerala farmers and shipped across India." />
+  <meta property="og:url" content="https://greenspicekerala.com/" />
+  <meta property="og:image" content="https://greenspicekerala.com/assets/cover-image.png" /> <!-- Prefer a beautiful, wide image (1200x630px) -->
 
-    <!-- ✅ Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Green Spices Kerala",
-        "url": "https://greenspicekerala.com",
-        "logo": "https://greenspicekerala.com/logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Kerala",
-          "addressCountry": "IN"
-        },
-        "description": "Kerala’s finest spice brand – green cardamom, black pepper, cinnamon and more.",
-        "telephone": "+91 62385 23734"
-      }
-    </script>
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@greenspicekerala" /> <!-- Optional if you have a Twitter account -->
+  <meta name="twitter:title" content="Buy Kerala Spices Online | Green Spices Kerala" />
+  <meta name="twitter:description" content="Fresh organic Kerala spices like cardamom, pepper, cinnamon directly from Kerala farmers. Buy online now!" />
+  <meta name="twitter:image" content="https://greenspicekerala.com/assets/cover-image.png" />
 
-    <!-- ✅ Main entry -->
-    <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="/logo.png" type="image/png" />
+
+  <!-- ✅ Preconnect for Faster Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- ✅ Preload Important Resources (Optional) -->
+  <!-- <link rel="preload" as="image" href="/assets/cover-image.png" /> -->
+
+  <!-- ✅ Structured Data (JSON-LD Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Green Spices Kerala",
+    "image": "https://greenspicekerala.com/assets/cover-image.png",
+    "@id": "https://greenspicekerala.com/",
+    "url": "https://greenspicekerala.com/",
+    "telephone": "+91-62385-23734",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "",
+      "addressLocality": "Kerala",
+      "addressRegion": "KL",
+      "postalCode": "680XXX",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "10.8505",
+      "longitude": "76.2711"
+    },
+    "sameAs": [
+      "https://www.facebook.com/greenspicekerala",
+      "https://www.instagram.com/greenspicekerala"
+    ],
+    "description": "Buy authentic Kerala spices such as cardamom, black pepper, cinnamon and more. Organic, fresh, and naturally grown directly from Kerala farmers."
+  }
+  </script>
+
+  <!-- ✅ Main JavaScript Entry -->
+  <script type="module" src="/src/main.jsx"></script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
 </html>
